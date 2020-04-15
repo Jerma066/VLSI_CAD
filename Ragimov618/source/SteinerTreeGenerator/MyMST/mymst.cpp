@@ -4,24 +4,8 @@ MyMST::MyMST(const QString& file_path):
     xml_fd(XmlReader(file_path)),
     points(xml_fd.getPoints())
 {
-    std::vector<int> vertical;
-    std::vector<int> horizontal;
 
-    for(size_t i = 0; i < points.size(); i++){
-        if(find(vertical.begin(), vertical.end(), points[i].x) == vertical.end()){
-            vertical.push_back(points[i].x);
-        }
-        if(find(horizontal.begin(), horizontal.end(), points[i].y) == horizontal.end()){
-            horizontal.push_back(points[i].y);
-        }
-    }
-
-    for(auto j_hor = horizontal.begin(); j_hor != horizontal.end(); j_hor++){
-        for(auto i_vert = vertical.begin(); i_vert != vertical.end(); i_vert++){
-            candidates.push_back(Candidate(*i_vert, *j_hor));
-        }
-    }
-
+    this->createPointsVariable();
     std::vector<Point> P_S = points;
     std::vector<Point> T;
     std::vector<Point> S;
@@ -63,9 +47,9 @@ MyMST::MyMST(const QString& file_path):
     std::vector<Segment> m2;
     std::vector<Segment> m3;
     std::vector<Segment> final_segments;
-    std::vector<TreeElement> m3_pins;
     std::vector<Point> m2_m3;
 
+    std::vector<TreeElement> m3_pins;
     for(size_t i = 0; i < Tree_ans.size(); i++){
         if(points[Tree_ans[i].start].x != points[Tree_ans[i].end].x){
             if (points[Tree_ans[i].start].x < points[Tree_ans[i].end].x){
@@ -230,6 +214,27 @@ MyMST::MyMST(const QString& file_path):
         final_segments.push_back(*it);
     }
     xml_fd.writeAnswer(pins, final_segments, m2_m3, pins_m2);
+}
+
+void MyMST::createPointsVariable()
+{
+    std::vector<int> vertical;
+    std::vector<int> horizontal;
+
+    for(size_t i = 0; i < points.size(); i++){
+        if(find(vertical.begin(), vertical.end(), points[i].x) == vertical.end()){
+            vertical.push_back(points[i].x);
+        }
+        if(find(horizontal.begin(), horizontal.end(), points[i].y) == horizontal.end()){
+            horizontal.push_back(points[i].y);
+        }
+    }
+
+    for(auto j_hor = horizontal.begin(); j_hor != horizontal.end(); j_hor++){
+        for(auto i_vert = vertical.begin(); i_vert != vertical.end(); i_vert++){
+            candidates.push_back(Candidate(*i_vert, *j_hor));
+        }
+    }
 }
 
 std::tuple<int, Tree> MyMST::MST(std::vector<Point> P)

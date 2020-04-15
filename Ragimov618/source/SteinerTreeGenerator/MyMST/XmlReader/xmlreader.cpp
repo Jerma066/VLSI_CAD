@@ -180,32 +180,8 @@ void XmlReader::writeAnswer(std::vector<Point> pins,
         }
     }
 
-    /*
-    for(size_t i = 0; i < m2.size(); i++){
-        xmlWriter.writeStartElement("segment");
-        xmlWriter.writeAttribute("x1", QString::number(m2[i].x1));
-        xmlWriter.writeAttribute("y1", QString::number(m2[i].y1));
-        xmlWriter.writeAttribute("x2", QString::number(m2[i].x2));
-        xmlWriter.writeAttribute("y2", QString::number(m2[i].y2));
-        xmlWriter.writeAttribute("layer", "m2");
-        xmlWriter.writeEndElement(); //</segment>
-    }
-
-    for(size_t i = 0; i < m3.size(); i++){
-        xmlWriter.writeStartElement("segment");
-        xmlWriter.writeAttribute("x1", QString::number(m3[i].x1));
-        xmlWriter.writeAttribute("y1", QString::number(m3[i].y1));
-        xmlWriter.writeAttribute("x2", QString::number(m3[i].x2));
-        xmlWriter.writeAttribute("y2", QString::number(m3[i].y2));
-        xmlWriter.writeAttribute("layer", "m3");
-        xmlWriter.writeEndElement(); //</segment>
-    }
-    */
-
     xmlWriter.writeEndElement(); // </net>
-
     xmlWriter.writeEndElement(); // </root>
-
     xmlWriter.writeEndDocument();
     file.close();
 

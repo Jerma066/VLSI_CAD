@@ -46,6 +46,7 @@ private:
     std::tuple<int, Tree> MST(std::vector<Point>);
     int deltaMST(std::vector<Point>, std::vector<Point>);
     void firstPreparations(std::vector<Point>&, std::vector<Point>&, std::vector<Point>&);
+    void createPointsVariable();
 
 
 private:
