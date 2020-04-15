@@ -5,7 +5,7 @@ MyMST::MyMST(const QString& file_path):
     points(xml_fd.getPoints())
 {
 
-    this->createPointsVariable();
+    createPointsVariable();
     std::vector<Point> P_S = points;
     std::vector<Point> T;
     std::vector<Point> S;
