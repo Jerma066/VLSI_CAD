@@ -159,7 +159,7 @@ void XmlReader::writeAnswer(std::vector<Point> pins,
 
     for(size_t i = 0; i < final_segments.size(); i++){
         if(final_segments[i].x1 == final_segments[i].x2 &&
-           final_segments[i].x1 == final_segments[i].y2){
+           final_segments[i].y1 == final_segments[i].y2){
             xmlWriter.writeStartElement("point");
             xmlWriter.writeAttribute("x", QString::number(final_segments[i].x1));
             xmlWriter.writeAttribute("y", QString::number(final_segments[i].y1));
@@ -169,7 +169,7 @@ void XmlReader::writeAnswer(std::vector<Point> pins,
     }
     for(size_t i = 0; i < final_segments.size(); i++){
         if(!(final_segments[i].x1 == final_segments[i].x2 &&
-           final_segments[i].x1 == final_segments[i].y2)){
+           final_segments[i].y1 == final_segments[i].y2)){
             xmlWriter.writeStartElement("segment");
             xmlWriter.writeAttribute("x1", QString::number(final_segments[i].x1));
             xmlWriter.writeAttribute("y1", QString::number(final_segments[i].y1));
